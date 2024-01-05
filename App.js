@@ -3,6 +3,7 @@
 import React from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import { useState } from "react";
+import Sample from "./sample";
 
 export default function App() {
   const [name, setName] = useState("");
@@ -19,6 +20,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      {/* <Sample/> */}
       <Text style={styles.title}>Simple Form Data</Text>
 
       <Text style={styles.label}>Name:</Text>
@@ -75,6 +77,7 @@ export default function App() {
           <Text style={{color:'red'}} >No Data Entered</Text>
         )}
       </View>
+      <Sample/>
     </View>
   );
 }
