@@ -20,14 +20,6 @@ const Sample = () => {
     <View>
       <Text style={styles.sampleBox}>sample page for test </Text>
       <TextInput placeholder="enter your name here" style={styles.input} />
-      <FlatList
-        data={list}
-        renderItem={(data)=><Text>{data.name}</Text>
-        
-    }
-    keyExtractor={data.id}
-
-     />
     </View>
   );
 };

@@ -4,6 +4,7 @@ import React from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import { useState } from "react";
 import Sample from "./sample";
+import Work from "./work";
 
 export default function App() {
   const [name, setName] = useState("");
@@ -15,12 +16,14 @@ export default function App() {
     setData(false);
     setName("");
     setEmail("");
-    setPassword("");
+    setPassword("");4
   };
 
   return (
     <View style={styles.container}>
+      <Work/>
       {/* <Sample/> */}
+      <Text className="bg-slate-200 text-2xl p-3" >tailwind css </Text>
       <Text style={styles.title}>Simple Form Data</Text>
 
       <Text style={styles.label}>Name:</Text>
