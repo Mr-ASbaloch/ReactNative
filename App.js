@@ -1,122 +1,28 @@
-
-
 import React from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
-import { useState } from "react";
-import Sample from "./sample";
+import { View, Text } from "react-native";
+// import Form from "./Form";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Form from "./Form";
 import Work from "./work";
+import Api from "./Api";
+import LoginScreen from "./Login";
+import RegisterScreen from "./Register";
 
-export default function App() {
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [data, setData] = useState(false);
 
-  const deleteData = () => {
-    setData(false);
-    setName("");
-    setEmail("");
-    setPassword("");4
-  };
-
+const App = () => {
+  const stack = createNativeStackNavigator();
   return (
-    <View style={styles.container}>
-      <Work/>
-      {/* <Sample/> */}
-      <Text className="bg-slate-200 text-2xl p-3" >tailwind css </Text>
-      <Text style={styles.title}>Simple Form Data</Text>
-
-      <Text style={styles.label}>Name:</Text>
-      <TextInput
-        placeholder="Enter your name.."
-        style={styles.inputs}
-        value={name}
-        onChangeText={(value) => {
-          setName(value);
-        }}
-      />
-
-      <Text style={styles.label}>Email:</Text>
-      <TextInput
-        placeholder="Enter your email.."
-        style={styles.inputs}
-        value={email}
-        onChangeText={(value) => {
-          setEmail(value);
-        }}
-        keyboardType="email-address"
-      />
-
-      <Text style={styles.label}>Password:</Text>
-      <TextInput
-        placeholder="Enter your password.."
-        secureTextEntry={true}
-        style={styles.inputs}
-        onChangeText={(value) => {
-          setPassword(value);
-        }}
-        value={password}
-      />
-
-      <View style={styles.buttonContainer}>
-        <Button
-          title="Add Data"
-          onPress={() => {
-            setData(true);
-          }}
-        />
-        <Button title="Delete Data" onPress={deleteData} />
-      </View>
-
-      <View style={styles.dataContainer}>
-        {data ? (
-          <View>
-            <Text style={{color:'blue', fontSize:25}}>Data Preview:</Text>
-            <Text   >Name: {name}</Text>
-            <Text >Email: {email}</Text>
-            <Text >Password: {password}</Text>
-          </View>
-        ) : (
-          <Text style={{color:'red'}} >No Data Entered</Text>
-        )}
-      </View>
-      <Sample/>
-    </View>
+    <NavigationContainer>
+      <stack.Navigator >
+      <stack.Screen name="Login" component={LoginScreen} />
+      <stack.Screen name="Register" component={RegisterScreen} />
+        <stack.Screen name="Home" component={Work} />
+        <stack.Screen name="Form" component={Form} />
+        <stack.Screen name="user"  options={{title:'User Data Api '}} component={Api} />
+      </stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 16,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 16,
-  },
-  label: {
-    fontSize: 16,
-    marginTop: 8,
-  },
-  inputs: {
-    height: 40,
-    borderColor: "blue",
-    borderWidth: 1,
-    borderRadius: 8,
-    paddingHorizontal: 8,
-    marginBottom: 16,
-  },
-  buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    width: "100%",
-    marginBottom: 16,
-  },
-  dataContainer: {
-    marginTop: 20,
-  },
-});
+export default App;
